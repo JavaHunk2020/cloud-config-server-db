@@ -1,0 +1,31 @@
+logging:
+  level:
+    com.aric.samples: TRACE
+server:
+  port: 8082
+spring:
+  cloud:
+    config:
+      enabled: false
+      server:
+        git:
+         uri: https://github.com/JavaHunk2020/cubic-bank
+         order: 2
+        jdbc:
+          enabled: true
+          sql: select KK, VV from PROPERTIES where APPLICATION=? and PP=? and LL=?
+          order: 1
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: mysql@1234
+    url: jdbc:mysql://localhost:3306/kuebiko_db 
+    #jndi-name: jdbc/config
+  profiles:
+    active:
+    - jdbc
+  jpa:
+    #database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
